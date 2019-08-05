@@ -5,23 +5,21 @@ var guessed = [];
 var wins = 0;
 var guesses = 15;
 var blank = "_ ";
+var blank;
+var blankString;
+var lettersGuessed
 
-//random pokemon on keypress
-// logs letter
-// need to make blankLength as array with each _ being a different index
 document.onkeypress = function(event) {
     var curentPokemon = pokemon[Math.floor(Math.random() * 75)];
     var pokeNameLength = curentPokemon.length;
     var letter = event.key.toLowerCase();
 
-
+    blankString = blank.repeat(pokeNameLength);
     document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
-    document.getElementById("currentName").innerHTML = blank.repeat(pokeNameLength);
-    guessed.push(curentPokemon);
+    document.getElementById("currentName").innerHTML = blankString;
+ 
+    guessed.push(curentPokemon);   
 
-    //console.log(guessed);
-    //console.log(pokeNameLength);
-    //console.log(letter);
 }
 
 // wins updates on key press
