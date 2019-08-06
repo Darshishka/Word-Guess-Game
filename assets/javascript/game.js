@@ -10,9 +10,10 @@ var blankString;
 var lettersGuessed
 var currentPokemon = pokemon[Math.floor(Math.random() * 75)];
 var pokeNameLength = currentPokemon.length;
+var turnEnd = false;
 
 document.onkeypress = function(event) {
-    var letter = event.key;
+    var letter = event.key.toLocaleLowerCase();
 
     blankString = blank.repeat(pokeNameLength);
     document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
@@ -20,11 +21,15 @@ document.onkeypress = function(event) {
     document.getElementById("letters").innerHTML += letter;
     guessed.push(currentPokemon);
 
+    
+//tests if letter pressed is in currentPokemon
     console.log(currentPokemon);
-    if (currentPokemon.includes(letter) === true){
+    if (currentPokemon.toLowerCase().includes(letter) === true){
+        guesses--;
         console.log("true");
     }
     else {
+        guesses--;
         console.log("false");
     }
 }
