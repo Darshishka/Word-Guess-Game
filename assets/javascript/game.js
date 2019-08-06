@@ -5,28 +5,47 @@ var guessed = [];
 var wins = 0;
 var guesses = 15;
 var blank = "_ ";
-var blank;
-var blankString;
-var lettersGuessed
+var blankString = [];
+var lettersGuessed;
 var currentPokemon = pokemon[Math.floor(Math.random() * 75)];
 var pokeNameLength = currentPokemon.length;
 var turnEnd = false;
+var letterAt = [];
+var letter;
 
 document.onkeypress = function(event) {
-    var letter = event.key.toLocaleLowerCase();
+    letter = event.key.toLowerCase();
+    console.log(currentPokemon);
+    console.log(letter);
 
+
+    
+    
     blankString = blank.repeat(pokeNameLength);
     document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
     document.getElementById("currentName").innerHTML = blankString;
     document.getElementById("letters").innerHTML += letter;
     guessed.push(currentPokemon);
 
-    
+
+// create way to assign each "_ " to a name to easily replace
+    //ex: first "_ " would be blankAt0, second would be blankAt1
+
 //tests if letter pressed is in currentPokemon
-    console.log(currentPokemon);
-    if (currentPokemon.toLowerCase().includes(letter) === true){
+    currentPokemon = currentPokemon.toLowerCase();
+
+    if (currentPokemon.toLowerCase().includes(letter)){
+        for (var i = 0; i < pokeNameLength; i++) {
+            if (currentPokemon[i] === letter) {
+                letterAt.push(i);
+//blankString is an array that i can now index
+                console.log(letterAt);
+            }
+            else{
+            }
+        }
+        //remove letterAt after replacing _ with the letter using letterAt.shift() to remove first element
         guesses--;
-        console.log("true");
     }
     else {
         guesses--;
