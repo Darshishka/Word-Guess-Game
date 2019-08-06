@@ -8,18 +8,25 @@ var blank = "_ ";
 var blank;
 var blankString;
 var lettersGuessed
+var currentPokemon = pokemon[Math.floor(Math.random() * 75)];
+var pokeNameLength = currentPokemon.length;
 
 document.onkeypress = function(event) {
-    var curentPokemon = pokemon[Math.floor(Math.random() * 75)];
-    var pokeNameLength = curentPokemon.length;
-    var letter = event.key.toLowerCase();
+    var letter = event.key;
 
     blankString = blank.repeat(pokeNameLength);
     document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
     document.getElementById("currentName").innerHTML = blankString;
- 
-    guessed.push(curentPokemon);   
+    document.getElementById("letters").innerHTML += letter;
+    guessed.push(currentPokemon);
 
+    console.log(currentPokemon);
+    if (currentPokemon.includes(letter) === true){
+        console.log("true");
+    }
+    else {
+        console.log("false");
+    }
 }
 
 // wins updates on key press
