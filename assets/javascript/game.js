@@ -1,3 +1,12 @@
+///Questions:
+//How do I get blankString.splice() to work?
+//How do I go about basically restarting the
+    //function/setting new pokemon name and starting
+    //from the top again?
+
+
+
+
 var pokemon = ["Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Weedle", "Pidgey", "Rattata", "Spearow", "Ekans", "Pikachu", "Sandshrew", "Nidoran", "Clefairy", "Vulpix", "Jigglypuff", "Zubat", "Oddish", "Paras", "Venonat", "Diglett", "Meowth", "Psyduck", "Mannkey", "Growlithe", "Poliwag", "Abra", "Machop", "Bellsprout", "Tentacool", "Geodude", "Ponyta", "Slowpoke", "Magnemite", "Doduo", "Seel", "Grimer", "Shellder", "Gastly", "Onix", "Drowzee", "Krabby", "Voltorb", "Exeggcute", "Cubone", "Hitmonlee", "Lickitung", "Koffing", "Rhyhorn", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Goldeen", "Staryu", "Scyther", "Jynx", "Electabuzz", "Magmar", "Pinsir", "Tauros", "Magikarp", "Lapras", "Ditto", "Eevee", "Porygon", "Omanyte", "Kabuto", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Mewtwo", "Mew"]
 //75 pokemon
 // index is 0 to 74
@@ -38,8 +47,13 @@ document.onkeypress = function(event) {
         for (var i = 0; i < pokeNameLength; i++) {
             if (currentPokemon[i] === letter) {
                 letterAt.push(i);
+                if (letterAt > 0){
+                    blankString.splice(letterAt[l], 1, letter);
+                }
 //blankString is an array that i can now index
+                console.log(blankString);
                 console.log(letterAt);
+                
             }
             else{
             }
@@ -49,7 +63,13 @@ document.onkeypress = function(event) {
     }
     else {
         guesses--;
-        console.log("false");
+        console.log("incorrect");
+    }
+    if (guesses < 0) {
+        alert("It's " + currentPokemon);
+        guesses = 15;
+    }
+    else {
     }
 }
 
