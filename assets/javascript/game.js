@@ -1,11 +1,5 @@
 ///Questions:
-//How do I get blankString.splice() to work?
-//How do I go about basically restarting the
-    //function/setting new pokemon name and starting
-    //from the top again?
-
-
-
+//How to call my function(event) in reset() ?
 
 var pokemon = ["Bulbasaur", "Charmander", "Squirtle", "Caterpie", "Weedle", "Pidgey", "Rattata", "Spearow", "Ekans", "Pikachu", "Sandshrew", "Nidoran", "Clefairy", "Vulpix", "Jigglypuff", "Zubat", "Oddish", "Paras", "Venonat", "Diglett", "Meowth", "Psyduck", "Mannkey", "Growlithe", "Poliwag", "Abra", "Machop", "Bellsprout", "Tentacool", "Geodude", "Ponyta", "Slowpoke", "Magnemite", "Doduo", "Seel", "Grimer", "Shellder", "Gastly", "Onix", "Drowzee", "Krabby", "Voltorb", "Exeggcute", "Cubone", "Hitmonlee", "Lickitung", "Koffing", "Rhyhorn", "Chansey", "Tangela", "Kangaskhan", "Horsea", "Goldeen", "Staryu", "Scyther", "Jynx", "Electabuzz", "Magmar", "Pinsir", "Tauros", "Magikarp", "Lapras", "Ditto", "Eevee", "Porygon", "Omanyte", "Kabuto", "Aerodactyl", "Snorlax", "Articuno", "Zapdos", "Moltres", "Dratini", "Mewtwo", "Mew"]
 //75 pokemon
@@ -14,11 +8,10 @@ var guessed = [];
 var wins = 0;
 var guesses = 15;
 var blank = "_ ";
-var blankString = [];
+var blankArray = [];
 var lettersGuessed;
 var currentPokemon = pokemon[Math.floor(Math.random() * 75)];
 var pokeNameLength = currentPokemon.length;
-var turnEnd = false;
 var letterAt = [];
 var letter;
 
@@ -27,12 +20,13 @@ document.onkeypress = function(event) {
     console.log(currentPokemon);
     console.log(letter);
 
-
+    while (blankArray.length < pokeNameLength) {
+        blankArray.push(blank);
+    }
     
-    
-    blankString = blank.repeat(pokeNameLength);
+    document.getElementById("wins").innerHTML = "Wins: " + wins;
     document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
-    document.getElementById("currentName").innerHTML = blankString;
+    document.getElementById("currentName").innerHTML = blankArray;
     document.getElementById("letters").innerHTML += letter;
     guessed.push(currentPokemon);
 
@@ -47,18 +41,16 @@ document.onkeypress = function(event) {
         for (var i = 0; i < pokeNameLength; i++) {
             if (currentPokemon[i] === letter) {
                 letterAt.push(i);
-                if (letterAt > 0){
-                    blankString.splice(letterAt[l], 1, letter);
-                }
-//blankString is an array that i can now index
-                console.log(blankString);
-                console.log(letterAt);
-                
+                blankArray.splice(letterAt[0], 1, letter);
+                letterAt.shift();
+                document.getElementById("currentName").innerHTML = blankArray;
             }
+//blankString is an array that i can now index
+                // console.log(blankString);
+                // console.log(letterAt);
             else{
             }
         }
-        //remove letterAt after replacing _ with the letter using letterAt.shift() to remove first element
         guesses--;
     }
     else {
@@ -66,17 +58,29 @@ document.onkeypress = function(event) {
         console.log("incorrect");
     }
     if (guesses < 0) {
-        alert("It's " + currentPokemon);
+        //alert("It's " + currentPokemon);
         guesses = 15;
+        reset();
     }
-    else {
+    else if (blankArray.includes(blank) == false) {
+        wins++;
+        document.getElementById("wins").innerHTML = "Wins: " + wins;
+        //alert("It's " + currentPokemon);
+        guesses = 15;
+        reset();
     }
+
 }
 
-// wins updates on key press
-//document.onkeypress = function(event) {
-//    var displayWins = document.getElementById("wins").innerHTML
-//    wins++;
-//    displayWins = "Wins: " + wins;
-//    document.getElementById("wins").innerText = displayWins;
-//}
+
+function reset() {
+    var guessed = [];
+    var guesses = 15;
+    var blankArray = [];
+    var lettersGuessed;
+    var currentPokemon = pokemon[Math.floor(Math.random() * 75)];
+    var pokeNameLength = currentPokemon.length;
+    var letterAt = [];
+    var letter;
+    ;
+}
