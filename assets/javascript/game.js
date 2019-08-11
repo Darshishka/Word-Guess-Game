@@ -9,78 +9,91 @@ var wins = 0;
 var guesses = 15;
 var blank = "_ ";
 var blankArray = [];
-var lettersGuessed;
+var lettersGuessed = "";
 var currentPokemon = pokemon[Math.floor(Math.random() * 75)];
 var pokeNameLength = currentPokemon.length;
 var letterAt = [];
 var letter;
 
+while (blankArray.length < pokeNameLength) {
+    blankArray.push(blank);
+    var tempArray = blankArray.join("");
+    document.getElementById("currentName").innerHTML = tempArray;
+}
+
 document.onkeypress = function(event) {
     letter = event.key.toLowerCase();
     console.log(currentPokemon);
     console.log(letter);
-
-    while (blankArray.length < pokeNameLength) {
-        blankArray.push(blank);
-    }
-    
     document.getElementById("wins").innerHTML = "Wins: " + wins;
-    document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
-    document.getElementById("currentName").innerHTML = blankArray;
-    document.getElementById("letters").innerHTML += letter;
+  
+    document.getElementById("letters").innerHTML = letter;
     guessed.push(currentPokemon);
 
-
-// create way to assign each "_ " to a name to easily replace
-    //ex: first "_ " would be blankAt0, second would be blankAt1
-
-//tests if letter pressed is in currentPokemon
     currentPokemon = currentPokemon.toLowerCase();
-
-    if (currentPokemon.toLowerCase().includes(letter)){
-        for (var i = 0; i < pokeNameLength; i++) {
-            if (currentPokemon[i] === letter) {
-                letterAt.push(i);
-                blankArray.splice(letterAt[0], 1, letter);
-                letterAt.shift();
-                document.getElementById("currentName").innerHTML = blankArray;
-            }
-//blankString is an array that i can now index
-                // console.log(blankString);
-                // console.log(letterAt);
-            else{
-            }
-        }
-        guesses--;
+//if statement to check if letter has been pressed before
+    //if index of letter has been pressed before
+        //guesses dont do down
+        //letter isnt added
+        //runs fuction below
+        // add below function to if includes
+    if (lettersGuessed.includes(letter) === true){
+        alert("already pressed")
     }
     else {
-        guesses--;
-        console.log("incorrect");
+        lettersGuessed += letter;
     }
-    if (guesses < 0) {
-        //alert("It's " + currentPokemon);
-        guesses = 15;
-        reset();
-    }
-    else if (blankArray.includes(blank) == false) {
-        wins++;
-        document.getElementById("wins").innerHTML = "Wins: " + wins;
-        //alert("It's " + currentPokemon);
-        guesses = 15;
-        reset();
+        
+        if (currentPokemon.toLowerCase().includes(letter)){
+            for (var i = 0; i < pokeNameLength; i++) {
+                if (currentPokemon[i] === letter) {
+                    letterAt.push(i);
+                    blankArray.splice(letterAt[0], 1, letter);
+                    letterAt.shift();
+                    tempArray = blankArray.join("");
+                    document.getElementById("currentName").innerHTML = tempArray;
+                }
+
+                else{
+                }
+            }
+            guesses--;
+            document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
+        }
+        else {
+            guesses--;
+            document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
+            console.log("incorrect");
+        }
+        if (blankArray.includes(blank) === false) {
+            alert("It's " + currentPokemon + "!")
+            wins++;
+            document.getElementById("wins").innerHTML = "Wins: " + wins;
+            //alert("It's " + currentPokemon);
+            reset();
+        }
+        else if (guesses <= 0) {
+            //alert("It's " + currentPokemon);
+            reset();
+        }
     }
 
-}
 
 
 function reset() {
-    var guessed = [];
-    var guesses = 15;
-    var blankArray = [];
-    var lettersGuessed;
-    var currentPokemon = pokemon[Math.floor(Math.random() * 75)];
-    var pokeNameLength = currentPokemon.length;
-    var letterAt = [];
-    var letter;
-    ;
+    guessed = [];
+    guesses = 15;
+    blankArray = [];
+    lettersGuessed = "";
+    currentPokemon = pokemon[Math.floor(Math.random() * 75)];
+    pokeNameLength = currentPokemon.length;
+    letterAt = [];
+    document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
+    while (blankArray.length < pokeNameLength) {
+        blankArray.push(blank);
+        tempArray = blankArray.join("");
+        document.getElementById("currentName").innerHTML = tempArray;
+
+    }
+    console.log(currentPokemon)
 }
