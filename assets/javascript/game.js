@@ -27,7 +27,7 @@ document.onkeypress = function(event) {
     console.log(letter);
     document.getElementById("wins").innerHTML = "Wins: " + wins;
   
-    document.getElementById("letters").innerHTML = letter;
+
     guessed.push(currentPokemon);
 
     currentPokemon = currentPokemon.toLowerCase();
@@ -37,11 +37,12 @@ document.onkeypress = function(event) {
         //letter isnt added
         //runs fuction below
         // add below function to if includes
-    if (lettersGuessed.includes(letter) === true){
-        alert("already pressed")
+    if (lettersGuessed.includes(letter) === false){
+        lettersGuessed += letter;
+        document.getElementById("letters").innerHTML = lettersGuessed;
     }
     else {
-        lettersGuessed += letter;
+        alert("already pressed")
     }
         
         if (currentPokemon.toLowerCase().includes(letter)){
@@ -66,14 +67,14 @@ document.onkeypress = function(event) {
             console.log("incorrect");
         }
         if (blankArray.includes(blank) === false) {
-            alert("It's " + currentPokemon + "!")
+            
             wins++;
             document.getElementById("wins").innerHTML = "Wins: " + wins;
-            //alert("It's " + currentPokemon);
+            alert("It's " + currentPokemon + "!")
             reset();
         }
         else if (guesses <= 0) {
-            //alert("It's " + currentPokemon);
+            alert("It's " + currentPokemon + "!")
             reset();
         }
     }
@@ -88,6 +89,7 @@ function reset() {
     currentPokemon = pokemon[Math.floor(Math.random() * 75)];
     pokeNameLength = currentPokemon.length;
     letterAt = [];
+    document.getElementById("letters").innerHTML = lettersGuessed;
     document.getElementById("guessesLeft").innerHTML = "Guesses left: " + guesses;
     while (blankArray.length < pokeNameLength) {
         blankArray.push(blank);
