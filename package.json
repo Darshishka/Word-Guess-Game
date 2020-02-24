@@ -1,0 +1,19 @@
+{
+  "name": "word-guess-game",
+  "version": "1.0.0",
+  "description": "A Pokemon themed hangman game made in javascript",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darshishka/Word-Guess-Game.git"
+  },
+  "author": "Darcy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Darshishka/Word-Guess-Game/issues"
+  },
+  "homepage": "https://github.com/Darshishka/Word-Guess-Game#readme"
+}

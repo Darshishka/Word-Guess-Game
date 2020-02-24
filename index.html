@@ -5,7 +5,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     </head>
-    <body>
+    <body style="text-align: center;">
         <h1>Who's That Pokemon?</h1>
         <h3>Press any key to get started!</h3>
         <p>Max Score: 75</p>
@@ -13,6 +13,14 @@
         <p id="guessesLeft"></p>
         <p id="currentName"></p>
         <p id="letters"></p>
+        <div class="hints">
+            <img id="type1Hint" src="">
+            <img id="type2Hint" src="">
+            <img id="type3Hint" src="">
+        </div>
+        <br>
+        <br>
+        <button onclick="end()">Next</button>
 
         <script src="assets/javascript/game.js"></script>
     </body>
