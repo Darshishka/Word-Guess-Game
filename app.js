@@ -1,3 +1,9 @@
+
+//Working: images showing up
+//Bugs: image shows up at wrong guess
+//      wrong button press adds guesses
+
+
 //check reset function
 //Bugs:
     //stop logging 'enter'
@@ -25,3 +31,4 @@
             //end() -> shows all end images and Pokemon name
             //then call reset()
     //Wins add to team
+

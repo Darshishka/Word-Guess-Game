@@ -236,6 +236,11 @@ document.onkeypress = function(event) {
             console.log("has 2 types");
         }
     }
+    if (guesses <= 6) {
+        document.getElementById("pokeImg").src = pokeData["imgSil"];
+    }
+    //if (guesses <= 1)
+
     letter = event.key.toLowerCase();
     console.log(currentPokemon);
     console.log(letter);
